@@ -22,9 +22,4 @@ function App() {
   );
 }
 
-// функциональный компонент
-function Component(){
-  return <h1>functional component</h1>;
-}
-
 export default App;

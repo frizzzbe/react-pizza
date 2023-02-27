@@ -1,34 +1,38 @@
-import React from 'react'
+import React from "react";
 
-function PizzaBlock({title, price}) {
+function PizzaBlock({ title, price, image, sizes, types }) {
   const [pizzaCount, setPizzaCount] = React.useState(0);
+  const [activeType, setActiveType] = React.useState(types[0]);
+  const [activeSize, setActiveSize] = React.useState(0);
+
+  const typeNames = ["тонкое", "традиционное"];
 
   const onPizzaAdd = () => {
-    setPizzaCount(pizzaCount + 1)
-  }
+    setPizzaCount(pizzaCount + 1);
+  };
 
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-        alt="Pizza"
-      />
+      <img className="pizza-block__image" src={image} alt={title} />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((type) => (
+            <li onClick={()=>setActiveType(type)} className={activeType === type ? 'active' : ''} key={title + typeNames[type]}>{typeNames[type]}</li>
+          ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((size, i) => (
+            <li onClick={()=>setActiveSize(i)} className={activeSize === i ? 'active' : ''} key={title + size}>{size} см.</li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <button onClick={onPizzaAdd} className="button button--outline button--add">
+        <button
+          onClick={onPizzaAdd}
+          className="button button--outline button--add"
+        >
           <svg
             width="12"
             height="12"
@@ -49,4 +53,4 @@ function PizzaBlock({title, price}) {
   );
 }
 
-export default PizzaBlock
+export default PizzaBlock;

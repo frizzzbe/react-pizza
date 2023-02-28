@@ -15,14 +15,6 @@ function App() {
     .then(json => {setPizzas(json)});
   }, []);
 
-  React.useEffect(()=>{
-    console.log("Компонент отрисовался")
-    return ()=>{
-      console.log('Комопонент был удален');
-    }
-  }, []);
-
-
   return (
     <div className="wrapper">
       <Header />

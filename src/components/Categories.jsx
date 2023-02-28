@@ -23,7 +23,7 @@ function Categories() {
             <li
               onClick={() => onClickCategory(idx)}
               className={ activeIndx === idx ? "active" : ''  }
-              key={el + "" + Math.random()}
+              key={el + idx}
             >
               {el}
             </li>

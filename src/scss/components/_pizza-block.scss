@@ -48,6 +48,10 @@
           border-radius: 5px;
           cursor: auto;
         }
+        &:not(.active):hover {
+          background-color: #f7f7f7;
+          cursor: pointer;
+        }
       }
     }
   }

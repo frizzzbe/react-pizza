@@ -9,6 +9,7 @@ const SkeletonPizza = () => (
     viewBox="0 0 280 465"
     backgroundColor="#f3f3f3"
     foregroundColor="#ecebeb"
+    style={{marginBottom:"65px"}}
   >
     <circle cx="134" cy="132" r="120" /> 
     <rect x="0" y="270" rx="7" ry="7" width="280" height="25" /> 

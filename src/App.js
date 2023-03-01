@@ -1,6 +1,6 @@
 import "./scss/app.scss";
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -17,9 +17,6 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/cart" element={<Cart/>}/>
             <Route path="*" element={<NotFound/>}/>
-
-            {/* <NotFound />
-            <Home /> */}
           </Routes>
         </div>
       </div>

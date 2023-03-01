@@ -28,13 +28,13 @@ const Home = () => {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {isloading
-          ? [...new Array(6)].map((_, idx) => <Skeleton key={idx} />)
+          ? [...new Array(8)].map((_, idx) => <Skeleton key={idx} />)
           : pizzas.map((obj, i) => (
               <PizzaBlock key={obj.title + obj.id} {...obj} />
             ))}
       </div>
     </>
   );
-}
+};
 
 export default Home;

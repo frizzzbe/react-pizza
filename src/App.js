@@ -1,5 +1,5 @@
 import "./scss/app.scss";
-import React from 'react'
+import React from "react";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
@@ -9,11 +9,15 @@ import Skeleton from "./components/PizzaBlock/Skeleton";
 
 function App() {
   const [pizzas, setPizzas] = React.useState([]);
+  const [isloading, setIsLoading] = React.useState(true);
 
-  React.useEffect(()=>{
-    fetch('https://63fe042bcd13ced3d7c47f84.mockapi.io/items')
-    .then((res)=>{return res.json()})
-    .then(json => {setPizzas(json)});
+  React.useEffect(() => {
+    fetch("https://63fe042bcd13ced3d7c47f84.mockapi.io/items")
+      .then((res) => res.json())
+      .then((json) => {
+        setPizzas(json);
+        setIsLoading(false);
+      });
   }, []);
 
   return (
@@ -27,9 +31,11 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            {pizzas.map((obj, i) => (
-              <PizzaBlock key={obj.title + obj.id} {...obj} />
-            ))}
+            {isloading
+              ? [...new Array(6)].map((_, idx) => <Skeleton key={idx} />)
+              : pizzas.map((obj, i) => (
+                  <PizzaBlock key={obj.title + obj.id} {...obj} />
+                ))}
           </div>
         </div>
       </div>

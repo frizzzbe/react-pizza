@@ -10,27 +10,42 @@ const Home = () => {
   const [pizzas, setPizzas] = React.useState([]);
   const [isloading, setIsLoading] = React.useState(true);
   // COMPONENTS STATE
-  const [activeIndx, setActive] = React.useState(0);
+  const [activeCategoryId, setCategoryId] = React.useState(0);
+  const [selectedSort, setSort] = React.useState(0);
 
   React.useEffect(() => {
+    const sortParams = [
+      { name: "популярности", sort: "rating", order: "desc" },
+      { name: "цене ↑", sort: "price", order: "desc" },
+      { name: "цене ↓", sort: "price", order: "asc" },
+      { name: "алфавиту", sort: "title", order: "asc" },
+    ];
+    const category = activeCategoryId ? 'category=' + activeCategoryId : '',
+          sortBy = sortParams[selectedSort].sort,
+          order = sortParams[selectedSort].order;
     setIsLoading(true);
-    fetch(`https://63fe042bcd13ced3d7c47f84.mockapi.io/items?category=${activeIndx}`)
+    fetch(
+      `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`
+    )
       .then((res) => res.json())
       .then((json) => {
         setPizzas(json);
         setIsLoading(false);
       });
-  }, [activeIndx]);
+  }, [activeCategoryId, selectedSort]);
 
   React.useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories activeIndx={activeIndx} setActive={(i)=>setActive(i)}/>
-        <Sort />
+        <Categories
+          activeCategoryId={activeCategoryId}
+          setCategoryId={(i) => setCategoryId(i)}
+        />
+        <Sort selectedSort={selectedSort} setSort={(i) => setSort(i)} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">

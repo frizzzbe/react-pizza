@@ -1,10 +1,9 @@
 import React from "react";
 
-function Sort() {
+function Sort({selectedSort, setSort}) {
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState(0);
-  const sortList = ["популярности", "цене", "алфавиту"];
-  const filterName = sortList[selected];
+  const sortList = ["популярности", "цене ↑", "цене ↓", "алфавиту"];
+  const filterName = sortList[selectedSort];
 
   return (
     <div className="sort">
@@ -34,9 +33,9 @@ function Sort() {
                 key={filter + i}
                 onClick={() => {
                   setOpen(false);
-                  setSelected(i);
+                  setSort(i);
                 }}
-                className={selected === i ? "active" : ''}
+                className={selectedSort === i ? "active" : ''}
               >
                 {filter}
               </li>

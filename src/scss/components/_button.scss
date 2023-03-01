@@ -89,6 +89,10 @@
     &:active {
       background-color: darken($orange, 8%);
     }
+
+    &.button--circle {
+      padding: 0;
+    }
   }
 
   &__delimiter {

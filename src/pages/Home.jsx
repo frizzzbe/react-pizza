@@ -20,7 +20,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="container">
       <div className="content__top">
         <Categories />
         <Sort />
@@ -33,7 +33,7 @@ const Home = () => {
               <PizzaBlock key={obj.title + obj.id} {...obj} />
             ))}
       </div>
-    </>
+    </div>
   );
 };
 

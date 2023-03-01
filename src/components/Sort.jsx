@@ -7,7 +7,7 @@ function Sort({selectedSort, setSort}) {
 
   return (
     <div className="sort">
-      <div className="sort__label">
+      <div onClick={() => { setOpen(!open); }} className="sort__label">
         <svg
           width="10"
           height="6"
@@ -21,7 +21,7 @@ function Sort({selectedSort, setSort}) {
           ></path>
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => { setOpen(!open); }} >
+        <span>
           {filterName}
         </span>
       </div>

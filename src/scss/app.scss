@@ -14,6 +14,12 @@ body {
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
+
+  
+  @media screen and (max-width: 768px) {
+    width: calc(100vw - 24px);
+    margin: 10px auto;
+  }
 }
 
 .content {
@@ -26,9 +32,12 @@ body {
   &__items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     justify-content: start;
     gap: 3px 35px;
+
+    @media screen and (max-width: 768px) {
+      justify-content: space-evenly;
+    }
   }
 
   &__top {

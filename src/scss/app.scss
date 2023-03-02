@@ -96,6 +96,8 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+    background-color: transparent;
+    border: 0;
     @include noselect();
 
     span {

@@ -15,10 +15,13 @@
     border-color: #fe5f1e;
 
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 10px;
-      width: 40px;
-      height: 40px;
+      padding: 7px;
+      width: 35px;
+      height: 35px;
       transition: color 0.15s ease-in-out;
       color: #fe5f1e;
       -webkit-touch-callout: none;

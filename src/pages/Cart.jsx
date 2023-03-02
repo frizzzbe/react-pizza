@@ -38,7 +38,7 @@ function Cart() {
             </svg>
             Корзина
           </h2>
-          <div class="cart__clear">
+          <button class="cart__clear">
             <svg
               width="20"
               height="20"
@@ -76,7 +76,7 @@ function Cart() {
               ></path>
             </svg>
             <span>Очистить корзину</span>
-          </div>
+          </button>
         </div>
         <div class="content__items">
           <div class="cart__item">

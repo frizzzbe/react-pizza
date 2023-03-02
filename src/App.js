@@ -8,9 +8,15 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 
 function App() {
+  const [searchValue, setSearchValue] = React.useState('');
+
+  // React.useEffect(()=>{
+  //   console.log(searchValue)
+  // }, [searchValue])
+
   return (
     <div className="wrapper">
-      <Header />
+      <Header searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />

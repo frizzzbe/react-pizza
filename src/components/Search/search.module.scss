@@ -17,6 +17,10 @@
 
   &:focus {
     border: 1px solid #fe5f1e;
+
+    &::placeholder {
+      color: #fe5f1e;
+    }
     
     & + .icon {
       opacity: 0.7;

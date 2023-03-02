@@ -20,9 +20,9 @@ const Home = () => {
       { name: "цене ↓", sort: "price", order: "asc" },
       { name: "алфавиту", sort: "title", order: "asc" },
     ];
-    const category = activeCategoryId ? 'category=' + activeCategoryId : '',
-          sortBy = sortParams[selectedSort].sort,
-          order = sortParams[selectedSort].order;
+    const category = activeCategoryId ? "category=" + activeCategoryId : "",
+      sortBy = sortParams[selectedSort].sort,
+      order = sortParams[selectedSort].order;
     setIsLoading(true);
     fetch(
       `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`

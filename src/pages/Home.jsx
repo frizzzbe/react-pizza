@@ -6,7 +6,7 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 // import pizzas from "./assets/pizzas.json";
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [pizzas, setPizzas] = React.useState([]);
   const [isloading, setIsLoading] = React.useState(true);
   // COMPONENTS STATE
@@ -38,6 +38,11 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const items = pizzas
+    .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
+    .map((obj, i) => <PizzaBlock key={obj.title + obj.id} {...obj} />);
+  const skeletons = [...new Array(8)].map((_, idx) => <Skeleton key={idx} />);
+
   return (
     <div className="container">
       <div className="content__top">
@@ -49,11 +54,7 @@ const Home = () => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {isloading
-          ? [...new Array(8)].map((_, idx) => <Skeleton key={idx} />)
-          : pizzas.map((obj, i) => (
-              <PizzaBlock key={obj.title + obj.id} {...obj} />
-            ))}
+        {isloading ? skeletons : items}
       </div>
     </div>
   );

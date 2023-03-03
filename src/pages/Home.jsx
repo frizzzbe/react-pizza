@@ -1,4 +1,5 @@
 import React from "react";
+import { SearchContext } from '../App'
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -7,7 +8,8 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 // import pizzas from "./assets/pizzas.json";
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+  const {searchValue} = React.useContext(SearchContext);
   const [pizzas, setPizzas] = React.useState([]);
   const [isloading, setIsLoading] = React.useState(true);
   // COMPONENTS STATE
@@ -22,7 +24,7 @@ const Home = ({ searchValue }) => {
       { name: "цене ↓", sort: "price", order: "asc" },
       { name: "алфавиту", sort: "title", order: "asc" },
     ];
-    const category = activeCategoryId ? "category=" + activeCategoryId : "",
+    const category = activeCategoryId ? "&category=" + activeCategoryId : "",
       sortBy = sortParams[selectedSort].sort,
       order = sortParams[selectedSort].order,
       search = searchValue ? searchValue.trim() : '';

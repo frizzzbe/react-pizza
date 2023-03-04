@@ -2,7 +2,7 @@ import "./scss/app.scss";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from "./redux/Slices/filterSlice";
+import { increment } from "./redux/Slices/filterSlice";
 
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -22,7 +22,6 @@ function App() {
         <Header/>
         <div className="content">
         <button onClick={() => dispatch(increment())}>GinGER{count}</button>
-        <button onClick={() => dispatch(decrement())}>GinGER{count}</button>
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/cart" element={<Cart />} />

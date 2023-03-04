@@ -23,7 +23,7 @@ export const filterSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount } = filterSlice.actions;
+export const { increment, decrement, incrementByAmount, increment15 } = filterSlice.actions;
 //  filterSlice.actions вернет все методы (действия) объекта filterSlice
 export default filterSlice.reducer;
 // отвечает за изменения state у reducer

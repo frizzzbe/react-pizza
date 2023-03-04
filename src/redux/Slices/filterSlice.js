@@ -11,6 +11,9 @@ export const filterSlice = createSlice({
     increment: (state) => {
       state.count += 1
     },
+    increment15: (state) => {
+      state.count += 15
+    },
     decrement: (state) => {
       state.count -= 1
     },

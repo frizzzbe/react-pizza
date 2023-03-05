@@ -3,6 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   count: 0, // начальное состояние = 0
   // initial state может быть и простым значением не обязательно объектом
+  // const initialState = 0
+  // тогда обращение к нему можно сократить до 
+  // reducers: {
+  //   increment: (state) => state + 1,
+  // },
 };
 
 export const filterSlice = createSlice({

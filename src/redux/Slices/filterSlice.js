@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   count: 0, // начальное состояние = 0
+  // initial state может быть и простым значением не обязательно объектом
 };
 
 export const filterSlice = createSlice({

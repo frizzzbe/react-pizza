@@ -13,7 +13,7 @@ import Pagination from "../components/Pagination";
 // import pizzas from "./assets/pizzas.json";
 
 const Home = () => {
-  const { categoryId, sort } = useSelector((state) => (state.filter));
+  const { categoryId, sort } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
   const { searchValue } = React.useContext(SearchContext);
@@ -22,9 +22,9 @@ const Home = () => {
   // COMPONENTS STATE
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const onClickCategory = (id)=>{
-    dispatch(setCategoryId(id))
-  }
+  const onClickCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
 
   React.useEffect(() => {
     const sortParams = [
@@ -38,16 +38,15 @@ const Home = () => {
       order = sortParams[sort].order,
       search = searchValue ? searchValue.trim() : "";
     setIsLoading(true);
-    fetch(
+    axios.get(
       search
         ? `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?order=${order}&search=${search}`
         : `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}`
     )
-      .then((res) => res.json())
-      .then((json) => {
-        setPizzas(json);
-        setIsLoading(false);
-      });
+    .then((res) => {
+      setPizzas(res.data);
+      setIsLoading(false);
+    });
   }, [categoryId, sort, searchValue, currentPage]);
 
   React.useEffect(() => {
@@ -66,7 +65,7 @@ const Home = () => {
           activeCategoryId={categoryId}
           setCategoryId={(i) => onClickCategory(i)}
         />
-        <Sort/>
+        <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isloading ? skeletons : items}</div>

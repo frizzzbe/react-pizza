@@ -12,8 +12,7 @@ import Pagination from "../components/Pagination";
 // import pizzas from "./assets/pizzas.json";
 
 const Home = () => {
-  const activeCategoryId = useSelector((state) => (state.filter.categoryId));
-  const sortId = useSelector((state => (state.filter.sort)));
+  const { categoryId, sort } = useSelector((state) => (state.filter));
   const dispatch = useDispatch();
 
   const { searchValue } = React.useContext(SearchContext);
@@ -33,9 +32,9 @@ const Home = () => {
       { name: "цене ↓", sort: "price", order: "asc" },
       { name: "алфавиту", sort: "title", order: "asc" },
     ];
-    const category = activeCategoryId ? "&category=" + activeCategoryId : "",
-      sortBy = sortParams[sortId].sort,
-      order = sortParams[sortId].order,
+    const category = categoryId ? "&category=" + categoryId : "",
+      sortBy = sortParams[sort].sort,
+      order = sortParams[sort].order,
       search = searchValue ? searchValue.trim() : "";
     setIsLoading(true);
     fetch(
@@ -48,7 +47,7 @@ const Home = () => {
         setPizzas(json);
         setIsLoading(false);
       });
-  }, [activeCategoryId, sortId, searchValue, currentPage]);
+  }, [categoryId, sort, searchValue, currentPage]);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,7 +62,7 @@ const Home = () => {
     <div className="container">
       <div className="content__top">
         <Categories
-          activeCategoryId={activeCategoryId}
+          activeCategoryId={categoryId}
           setCategoryId={(i) => onClickCategory(i)}
         />
         <Sort/>

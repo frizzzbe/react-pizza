@@ -1,5 +1,8 @@
 import React from "react";
 import { SearchContext } from "../App";
+import { useDispatch, useSelector } from "react-redux";
+
+import { setCategoryId } from "../redux/Slices/filterSlice";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -9,13 +12,19 @@ import Pagination from "../components/Pagination";
 // import pizzas from "./assets/pizzas.json";
 
 const Home = () => {
+  const activeCategoryId = useSelector((state) => (state.filter.categoryId));
+  const sortId = useSelector((state => (state.filter.sort)));
+  const dispatch = useDispatch();
+
   const { searchValue } = React.useContext(SearchContext);
   const [pizzas, setPizzas] = React.useState([]);
   const [isloading, setIsLoading] = React.useState(true);
   // COMPONENTS STATE
-  const [activeCategoryId, setCategoryId] = React.useState(0);
-  const [selectedSort, setSort] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
+
+  const onClickCategory = (id)=>{
+    dispatch(setCategoryId(id))
+  }
 
   React.useEffect(() => {
     const sortParams = [
@@ -25,8 +34,8 @@ const Home = () => {
       { name: "алфавиту", sort: "title", order: "asc" },
     ];
     const category = activeCategoryId ? "&category=" + activeCategoryId : "",
-      sortBy = sortParams[selectedSort].sort,
-      order = sortParams[selectedSort].order,
+      sortBy = sortParams[sortId].sort,
+      order = sortParams[sortId].order,
       search = searchValue ? searchValue.trim() : "";
     setIsLoading(true);
     fetch(
@@ -39,7 +48,7 @@ const Home = () => {
         setPizzas(json);
         setIsLoading(false);
       });
-  }, [activeCategoryId, selectedSort, searchValue, currentPage]);
+  }, [activeCategoryId, sortId, searchValue, currentPage]);
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -55,9 +64,9 @@ const Home = () => {
       <div className="content__top">
         <Categories
           activeCategoryId={activeCategoryId}
-          setCategoryId={(i) => setCategoryId(i)}
+          setCategoryId={(i) => onClickCategory(i)}
         />
-        <Sort selectedSort={selectedSort} setSort={(i) => setSort(i)} />
+        <Sort/>
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isloading ? skeletons : items}</div>

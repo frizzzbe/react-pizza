@@ -1,17 +1,30 @@
 import React from "react";
 import styles from "./search.module.scss";
 import { SearchContext } from "../../App";
+import debounce from "lodash.debounce";
 
 const Search = () => {
+  const [inputValue, setInputValue] = React.useState("");
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
-  const inputSearch = React.useRef();
+  const searchRef = React.useRef();
+  
+  // искусственное скоращение вызовов запроса к серверу.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const searchDebounce = React.useCallback(
+    debounce((str)=>setSearchValue(str), 1000),
+  []);
+
+  function onChangeInput(e) {
+    setInputValue(e.target.value);
+    searchDebounce(e.target.value);
+  }
 
   return (
     <div className={styles.root}>
       <input
-        ref={inputSearch}
-        onChange={(e) => setSearchValue(e.target.value)}
-        value={searchValue}
+        ref={searchRef}
+        onChange={(e) => onChangeInput(e)}
+        value={inputValue}
         className={styles.searchBox}
         type="text"
         placeholder="Поиск пиццы..."
@@ -34,7 +47,8 @@ const Search = () => {
           className={styles.clearIcon}
           onClick={() => {
             setSearchValue("");
-            inputSearch.current.focus();
+            setInputValue("");
+            searchRef.current.focus();
           }}
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"

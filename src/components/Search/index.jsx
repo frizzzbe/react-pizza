@@ -11,7 +11,7 @@ const Search = () => {
   // искусственное скоращение вызовов запроса к серверу.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const searchDebounce = React.useCallback(
-    debounce((str)=>setSearchValue(str), 1000),
+    debounce((str)=>setSearchValue(str), 300),
   []);
 
   function onChangeInput(e) {

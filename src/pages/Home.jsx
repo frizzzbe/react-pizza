@@ -59,7 +59,7 @@ const Home = () => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
       if(Object.values(params).join() === Object.values(initialState).join()){
-        fetchPizzas();
+        fetchPizzas(); // делаем fetch вручную если данные в ссылке совпадают с начальным состояние redux
       }
       dispatch(setFilters(params));
       isSearch.current = true; // да, пришли параметры из URL 

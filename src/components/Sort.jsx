@@ -11,12 +11,15 @@ function Sort() {
   const sortList = ["популярности", "цене ↑", "цене ↓", "алфавиту"];
   const filterName = sortList[sortId];
 
+  const handleClickOutside = (e)=>{
+    if (!e.path.includes(sortRef.current)) { setOpen(false) }
+  };
   React.useEffect(()=>{
-    document.body.addEventListener('click', (e)=>{
-      if (!e.path.includes(sortRef.current)) {
-        setOpen(false)
-      }
-    })
+    document.body.addEventListener('click', handleClickOutside)
+    // если этот компонент будет умирать удаляем хэндлер
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside)
+    }
   }, []);
 
   return (

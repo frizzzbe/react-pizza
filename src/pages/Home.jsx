@@ -9,6 +9,7 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
+import qs from "qs";
 // import pizzas from "./assets/pizzas.json";
 
 const Home = () => {
@@ -52,6 +53,15 @@ const Home = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  React.useEffect(()=>{
+    const queryString = qs.stringify({
+      sortProperty: sort.sortProperty,
+      categoryId,
+      currentPage,
+    });
+    console.log(queryString)
+  }, [categoryId, sort, searchValue, currentPage])
 
   const items = pizzas.map((obj, i) => (
     <PizzaBlock key={obj.title + obj.id} {...obj} />

@@ -4,7 +4,7 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId, setCurrentPage, setFilters } from "../redux/Slices/filterSlice";
+import { setCategoryId, setCurrentPage, setFilters, initialState } from "../redux/Slices/filterSlice";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -58,7 +58,11 @@ const Home = () => {
     // если есть данные в ссылке, то обновляем redux при первом рендере.
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      console.log("params", params)
+      // console.log("initialState", Object.values(initialState).join())
+      // console.log("params", Object.values(params).join())
+      if(Object.values(params).join() === Object.values(initialState).join()){
+        fetchPizzas();
+      }
       dispatch(setFilters(params));
       isSearch.current = true; // да, пришли параметры из URL 
     }
@@ -78,8 +82,8 @@ const Home = () => {
       const queryString = qs.stringify({
         sortProperty: sort.sortProperty,
         categoryId,
-        currentPage,
         sort,
+        currentPage,
       }, {addQueryPrefix: true});
       navigate(queryString);
     }

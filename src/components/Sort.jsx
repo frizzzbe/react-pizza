@@ -17,9 +17,7 @@ function Sort() {
   React.useEffect(()=>{
     document.body.addEventListener('click', handleClickOutside)
     // если этот компонент будет умирать удаляем хэндлер
-    return () => {
-      document.body.removeEventListener('click', handleClickOutside)
-    }
+    return () => document.body.removeEventListener('click', handleClickOutside)
   }, []);
 
   return (

@@ -58,8 +58,6 @@ const Home = () => {
     // если есть данные в ссылке, то обновляем redux при первом рендере.
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      // console.log("initialState", Object.values(initialState).join())
-      // console.log("params", Object.values(params).join())
       if(Object.values(params).join() === Object.values(initialState).join()){
         fetchPizzas();
       }

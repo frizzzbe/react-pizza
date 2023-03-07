@@ -1,20 +1,24 @@
 import React from "react";
 import axios from "axios";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId, setCurrentPage } from "../redux/Slices/filterSlice";
+import { setCategoryId, setCurrentPage, setFilters } from "../redux/Slices/filterSlice";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
-import qs from "qs";
 // import pizzas from "./assets/pizzas.json";
 
 const Home = () => {
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
 
   const { searchValue } = React.useContext(SearchContext);
   const [pizzas, setPizzas] = React.useState([]);
@@ -26,8 +30,7 @@ const Home = () => {
   const onChangePage = (num) => {
     dispatch(setCurrentPage(num));
   }
-
-  React.useEffect(() => {
+  const fetchPizzas = ()=>{
     const sortParams = [
       { name: "популярности", sort: "rating", order: "desc" },
       { name: "цене ↑", sort: "price", order: "desc" },
@@ -48,20 +51,40 @@ const Home = () => {
       setPizzas(res.data);
       setIsLoading(false);
     });
-  }, [categoryId, sort, searchValue, currentPage]);
+  }
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
+    // если есть данные в ссылке, то обновляем redux при первом рендере.
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      console.log("params", params)
+      dispatch(setFilters(params));
+      isSearch.current = true; // да, пришли параметры из URL 
+    }
   }, []);
 
+  // при изменении redux state, делается axios запрос.
+  React.useEffect(() => {
+    if (!isSearch.current) { 
+      fetchPizzas() // делаем запрос только в случае если нет параметров в ссылке
+    }
+    isSearch.current = false; // при следующем вызове делаем запрос в любом случае
+  }, [categoryId, sort, searchValue, currentPage, isSearch]);
+
+  // при изменении redux state, у нас обновляется ссылка страницы.
   React.useEffect(()=>{
-    const queryString = qs.stringify({
-      sortProperty: sort.sortProperty,
-      categoryId,
-      currentPage,
-    });
-    console.log(queryString)
-  }, [categoryId, sort, searchValue, currentPage])
+    if(isMounted.current){
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+        sort,
+      }, {addQueryPrefix: true});
+      navigate(queryString);
+    }
+    isMounted.current = true; // данный блок кода отработает только со второго рендера
+  }, [categoryId, sort, currentPage, navigate]);
 
   const items = pizzas.map((obj, i) => (
     <PizzaBlock key={obj.title + obj.id} {...obj} />
@@ -79,7 +102,7 @@ const Home = () => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isloading ? skeletons : items}</div>
-      <Pagination setCurrentPage={onChangePage} />
+      <Pagination page={currentPage} setCurrentPage={onChangePage} />
     </div>
   );
 };

@@ -24,6 +24,8 @@ const cartSlice = createSlice({
     addItem(state, action) {
       const findItem = state.items.find((obj)=>obj.id === action.payload.id);
       if (findItem) {
+        findItem.type = action.payload.type;
+        findItem.size = action.payload.size;
         findItem.count++;
       } else {
         state.items.push({
@@ -36,6 +38,9 @@ const cartSlice = createSlice({
     minusItem(state, action) {
       const findItem = state.items.find((obj)=>obj.id === action.payload);
       if(findItem){findItem.count--;}
+      if(findItem.count < 1){
+        state.items = state.items.filter((obj)=>obj.id !== action.payload)
+      }
       updateData(state);
     },
     removeItem(state, action) {

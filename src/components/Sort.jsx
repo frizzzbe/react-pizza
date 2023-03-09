@@ -12,7 +12,7 @@ function Sort() {
   const filterName = sortList[sortId];
 
   const handleClickOutside = (e)=>{
-    if (!e.path.includes(sortRef.current)) { setOpen(false) }
+    if (!e.composedPath().includes(sortRef.current)) { setOpen(false) }
   };
   React.useEffect(()=>{
     document.body.addEventListener('click', handleClickOutside)

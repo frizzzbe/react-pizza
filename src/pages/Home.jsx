@@ -1,10 +1,10 @@
 import React from "react";
-import axios from "axios";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setCurrentPage, setFilters, initialState } from "../redux/Slices/filterSlice";
+import { getPizzas } from "../redux/Slices/pizzaSlice";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -15,14 +15,12 @@ import Pagination from "../components/Pagination";
 
 const Home = () => {
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
+  const {items: pizzas, status } = useSelector((state) => state.pizza);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
-
   const { searchValue } = React.useContext(SearchContext);
-  const [pizzas, setPizzas] = React.useState([]);
-  const [isloading, setIsLoading] = React.useState(true);
 
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -30,7 +28,7 @@ const Home = () => {
   const onChangePage = (num) => {
     dispatch(setCurrentPage(num));
   }
-  const fetchPizzas = ()=>{
+  const fetchPizzas = async () => {
     const sortParams = [
       { name: "популярности", sort: "rating", order: "desc" },
       { name: "цене ↑", sort: "price", order: "desc" },
@@ -41,16 +39,8 @@ const Home = () => {
       sortBy = sortParams[sort].sort,
       order = sortParams[sort].order,
       search = searchValue ? searchValue.trim() : "";
-    setIsLoading(true);
-    axios.get(
-      search
-        ? `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?order=${order}&search=${search}`
-        : `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}`
-    )
-    .then((res) => {
-      setPizzas(res.data);
-      setIsLoading(false);
-    });
+    
+    dispatch(getPizzas({category, sortBy, order, search, currentPage}));
   }
 
   React.useEffect(() => {
@@ -103,7 +93,19 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">{isloading ? skeletons : items}</div>
+      {(status === 'error') ? (
+      <div className="content__error-info">
+        <h2>
+          Не грузится <span>😕</span>
+        </h2>
+        <p>
+          К сожалению, не удалось получить питсы.
+          <br />
+          Попробуйте повторить попытку позже.
+        </p>
+      </div>
+      ) : <div className="content__items">{(status === 'loading') ? skeletons : items}</div>}
+      
       <Pagination page={currentPage} setCurrentPage={onChangePage} />
     </div>
   );

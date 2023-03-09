@@ -26,7 +26,7 @@ const cartSlice = createSlice({
       }, 0)
       // обновление количества продуктов
       state.totalCount = state.items.reduce((sum, obj)=>{
-        return obj.price * obj.count + sum
+        return obj.count + sum
       }, 0)
     }, 
     removeItem(state, action) {

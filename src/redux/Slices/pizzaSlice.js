@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// createAsyncThunk заменяет стандартный рекомендуемый подход для обработки жизненных циклов асинхронных запросов.
+// таких как pending, fulfilled, rejected
 export const getPizzas = createAsyncThunk(
   "pizza/getPizzasStatus",
   async (params) => {

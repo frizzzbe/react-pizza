@@ -65,14 +65,17 @@ const Home = () => {
   }, [categoryId, sort, searchValue, currentPage, isSearch]);
 
   // при изменении redux state, у нас обновляется ссылка страницы.
-  React.useEffect(()=>{
-    if(isMounted.current){
-      const queryString = qs.stringify({
-        sortProperty: sort.sortProperty,
-        categoryId,
-        sort,
-        currentPage,
-      }, {addQueryPrefix: true});
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify(
+        {
+          sortProperty: sort.sortProperty,
+          categoryId,
+          sort,
+          currentPage,
+        },
+        { addQueryPrefix: true }
+      );
       navigate(queryString);
     }
     isMounted.current = true; // данный блок кода отработает только со второго рендера
@@ -93,19 +96,23 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      {(status === 'error') ? (
-      <div className="content__error-info">
-        <h2>
-          Не грузится <span>😕</span>
-        </h2>
-        <p>
-          К сожалению, не удалось получить питсы.
-          <br />
-          Попробуйте повторить попытку позже.
-        </p>
-      </div>
-      ) : <div className="content__items">{(status === 'loading') ? skeletons : items}</div>}
-      
+      {status === "error" ? (
+        <div className="content__error-info">
+          <h2>
+            Не грузится <span>😕</span>
+          </h2>
+          <p>
+            К сожалению, не удалось получить питсы.
+            <br />
+            Попробуйте повторить попытку позже.
+          </p>
+        </div>
+      ) : (
+        <div className="content__items">
+          {status === "loading" ? skeletons : items}
+        </div>
+      )}
+
       <Pagination page={currentPage} setCurrentPage={onChangePage} />
     </div>
   );

@@ -24,8 +24,10 @@ const cartSlice = createSlice({
     addItem(state, action) {
       const findItem = state.items.find((obj)=>obj.id === action.payload.id);
       if (findItem) {
-        findItem.type = action.payload.type;
-        findItem.size = action.payload.size;
+        if(action.payload.type && action.payload.size) {
+          findItem.type = action.payload.type;
+          findItem.size = action.payload.size;
+        };
         findItem.count++;
       } else {
         state.items.push({
@@ -53,6 +55,11 @@ const cartSlice = createSlice({
     }, 
   }
 });
+
+// Селектор в redux. Помогает сократить код.
+// Для того чтобы вытащить стейт из другого комопнента.
+export const selectCart = (state)=>state.cart;
+export const selectCartItemById = (id) => (state) => state.cart.items.find((obj)=>obj.id===id);
 
 export const { addItem, minusItem, removeItem, clearItems } = cartSlice.actions;
 export default cartSlice.reducer;

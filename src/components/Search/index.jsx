@@ -1,17 +1,18 @@
 import React from "react";
 import styles from "./search.module.scss";
-import { SearchContext } from "../../App";
 import debounce from "lodash.debounce";
+import { useDispatch } from "react-redux";
+import { setSearchValue } from "../../redux/Slices/filterSlice";
 
 const Search = () => {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = React.useState("");
-  const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const searchRef = React.useRef();
   
   // искусственное скоращение вызовов запроса к серверу.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const searchDebounce = React.useCallback(
-    debounce((str)=>setSearchValue(str), 300),
+    debounce((str)=>dispatch(setSearchValue(str)), 300),
   []);
 
   function onChangeInput(e) {
@@ -42,11 +43,11 @@ const Search = () => {
           id="XMLID_223_"
         />
       </svg>
-      {searchValue && (
+      {inputValue && (
         <svg
           className={styles.clearIcon}
           onClick={() => {
-            setSearchValue("");
+            dispatch(setSearchValue(""));
             setInputValue("");
             searchRef.current.focus();
           }}

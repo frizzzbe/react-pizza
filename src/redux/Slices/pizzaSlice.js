@@ -5,13 +5,14 @@ import axios from "axios";
 // таких как pending, fulfilled, rejected
 export const getPizzas = createAsyncThunk(
   "pizza/getPizzasStatus",
-  async (params) => {
+  async (params, Thunk) => {
     const { category, sortBy, order, search, currentPage } = params;
     const { data } = await axios.get(
       search
         ? `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?order=${order}&search=${search}`
         : `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}`
     );
+    if(data.length === 0){ throw new Error("Zero elems") }
     return data;
   }
 );

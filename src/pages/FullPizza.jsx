@@ -32,7 +32,7 @@ function FullPizza() {
         Lorem ipsum dolor sit {pizza.title}
       </p>
       <h4>{pizza.price} р.</h4>
-      <div>Rating {pizza.rating} <span>{'⭐'.repeat(pizza.rating)}</span></div>
+      <div>Rating {pizza.rating/2} <span>{'⭐'.repeat(pizza.rating/2)}</span></div>
     </div>
   );
 }

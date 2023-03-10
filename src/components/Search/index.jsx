@@ -3,9 +3,11 @@ import styles from "./search.module.scss";
 import debounce from "lodash.debounce";
 import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/Slices/filterSlice";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = React.useState("");
   const searchRef = React.useRef();
   
@@ -16,6 +18,7 @@ const Search = () => {
   []);
 
   function onChangeInput(e) {
+    navigate('/');
     setInputValue(e.target.value);
     searchDebounce(e.target.value);
   }

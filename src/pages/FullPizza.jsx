@@ -1,10 +1,11 @@
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function FullPizza() {
   const [pizza, setPizza] = React.useState();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     async function fetchPizza() {
@@ -12,7 +13,8 @@ function FullPizza() {
         const { data } = await axios.get(`https://63fe042bcd13ced3d7c47f84.mockapi.io/items/` + id);
         setPizza(data);
       } catch {
-        console.log("Ошибка приполучениий питсы");
+        console.log("Ошибка приполучении питсы");
+        navigate('/')
       }
     }
     fetchPizza()

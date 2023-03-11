@@ -21,7 +21,7 @@ function FullPizza() {
   }, []);
 
   if (!pizza) {
-    return "Загрузка..."
+    return <div>Загрузка...</div>
   }
 
   return (

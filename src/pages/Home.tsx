@@ -12,7 +12,7 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 // import pizzas from "./assets/pizzas.json";
 
-const Home = () => {
+const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
   const {items: pizzas, status } = useSelector(selectPizzaData);
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const onClickCategory = (id) => {
+  const onClickCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
-  const onChangePage = (num) => {
+  const onChangePage = (num: number) => {
     dispatch(setCurrentPage(num));
   }
   const fetchPizzas = async () => {
@@ -37,7 +37,7 @@ const Home = () => {
       sortBy = sortParams[sort].sort,
       order = sortParams[sort].order,
       search = searchValue ? searchValue.trim() : "";
-    
+    //@ts-ignore
     dispatch(getPizzas({category, sortBy, order, search, currentPage}));
   }
 
@@ -79,7 +79,7 @@ const Home = () => {
     isMounted.current = true; // данный блок кода отработает только со второго рендера
   }, [categoryId, sort, currentPage, navigate]);
 
-  const items = pizzas.map((obj, i) => (
+  const items = pizzas.map((obj: any) => (
     <PizzaBlock key={obj.title + obj.id} {...obj} />
   ));
   const skeletons = [...new Array(8)].map((_, idx) => <Skeleton key={idx} />);
@@ -89,7 +89,7 @@ const Home = () => {
       <div className="content__top">
         <Categories
           activeCategoryId={categoryId}
-          setCategoryId={(i) => onClickCategory(i)}
+          setCategoryId={(i: any) => onClickCategory(i)}
         />
         <Sort />
       </div>

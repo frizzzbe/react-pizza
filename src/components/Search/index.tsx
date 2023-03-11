@@ -9,7 +9,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = React.useState("");
-  const searchRef = React.useRef();
+  const searchRef = React.useRef<HTMLInputElement>(null);
   
   // искусственное скоращение вызовов запроса к серверу.
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +17,7 @@ const Search = () => {
     debounce((str)=>dispatch(setSearchValue(str)), 300),
   []);
 
-  function onChangeInput(e) {
+  function onChangeInput(e: any) {
     navigate('/');
     setInputValue(e.target.value);
     searchDebounce(e.target.value);
@@ -52,7 +52,7 @@ const Search = () => {
           onClick={() => {
             dispatch(setSearchValue(""));
             setInputValue("");
-            searchRef.current.focus();
+            searchRef.current?.focus();
           }}
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"

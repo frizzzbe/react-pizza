@@ -5,13 +5,13 @@ import { selectSort, setSort } from "../redux/Slices/filterSlice";
 function Sort() {
   const dispatch = useDispatch();
   const sortId = useSelector(selectSort);
-  const sortRef = React.useRef()
+  const sortRef = React.useRef<HTMLDivElement>(null)
 
   const [open, setOpen] = React.useState(false);
-  const sortList = ["популярности", "цене ↑", "цене ↓", "алфавиту"];
+  const sortList: string[] = ["популярности", "цене ↑", "цене ↓", "алфавиту"];
   const filterName = sortList[sortId];
 
-  const handleClickOutside = (e)=>{
+  const handleClickOutside = (e: any)=>{
     if (!e.composedPath().includes(sortRef.current)) { setOpen(false) }
   };
   React.useEffect(()=>{

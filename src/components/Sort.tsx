@@ -11,8 +11,8 @@ function Sort() {
   const sortList: string[] = ["популярности", "цене ↑", "цене ↓", "алфавиту"];
   const filterName = sortList[sortId];
 
-  const handleClickOutside = (e: any)=>{
-    if (!e.composedPath().includes(sortRef.current)) { setOpen(false) }
+  const handleClickOutside = (e: MouseEvent)=>{
+    if (sortRef.current && !e.composedPath().includes(sortRef.current)) { setOpen(false) }
   };
   React.useEffect(()=>{
     document.body.addEventListener('click', handleClickOutside)

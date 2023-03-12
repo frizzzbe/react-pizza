@@ -34,11 +34,11 @@ const Home: React.FC = () => {
       { name: "цене ↓", sort: "price", order: "asc" },
       { name: "алфавиту", sort: "title", order: "asc" },
     ];
-    const categoryParam = category ? "&category=" + category : "",
+    const categoryParam = (category > 0) ? "&category=" + category : "",
       sortParam = sortParams[sortBy].sort,
       order = sortParams[sortBy].order,
       searchParam = search ? search.trim() : "";
-    
+
     dispatch(getPizzas({
       category: categoryParam, 
       sortBy: sortParam, 
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
     // если есть данные в ссылке, то обновляем redux при первом рендере.
     if (window.location.search) {
       const params = (qs.parse(window.location.search.substring(1))) as unknown as SearchPizzaParams;
-      if(Object.values(params).join() === Object.values(initialState).join()){
+      if(Object.values(params).join('') === Object.values(initialState).join('')){
         fetchPizzas(); // делаем fetch вручную если данные в ссылке совпадают с начальным состояние redux
       }
       dispatch(setFilters({
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
         {
           // временно отключено, так как sort блокируется Type Scriptom
           // sortProperty: sort.sortProperty,
-          categoryId: category,
+          category,
           sortBy,
           currentPage,
         },

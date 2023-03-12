@@ -14,7 +14,7 @@ import Pagination from "../components/Pagination";
 // import pizzas from "./assets/pizzas.json";
 
 const Home: React.FC = () => {
-  const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
+  const { category, sortBy, currentPage, search } = useSelector(selectFilter);
   const {items: pizzas, status } = useSelector(selectPizzaData);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -34,12 +34,12 @@ const Home: React.FC = () => {
       { name: "цене ↓", sort: "price", order: "asc" },
       { name: "алфавиту", sort: "title", order: "asc" },
     ];
-    const category = categoryId ? "&category=" + categoryId : "",
-      sortBy = sortParams[sort].sort,
-      order = sortParams[sort].order,
-      search = searchValue ? searchValue.trim() : "";
+    const categoryParam = category ? "&category=" + category : "",
+      sortParam = sortParams[sortBy].sort,
+      order = sortParams[sortBy].order,
+      searchParam = search ? search.trim() : "";
     
-    dispatch(getPizzas({category, sortBy, order, search, currentPage: String(currentPage)}));
+    dispatch(getPizzas({category: categoryParam, sortBy: sortParam, order, search: searchParam, currentPage: String(currentPage)}));
   }
 
   React.useEffect(() => {
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
       fetchPizzas() // делаем запрос только в случае если нет параметров в ссылке
     }
     isSearch.current = false; // при следующем вызове делаем запрос в любом случае
-  }, [categoryId, sort, searchValue, currentPage, isSearch]);
+  }, [category, sortBy, search, currentPage, isSearch]);
 
   // при изменении redux state, у нас обновляется ссылка страницы.
   React.useEffect(() => {
@@ -74,8 +74,8 @@ const Home: React.FC = () => {
         {
           // временно отключено, так как sort блокируется Type Scriptom
           // sortProperty: sort.sortProperty,
-          categoryId,
-          sort,
+          categoryId: category,
+          sortBy,
           currentPage,
         },
         { addQueryPrefix: true }
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
       navigate(queryString);
     }
     isMounted.current = true; // данный блок кода отработает только со второго рендера
-  }, [categoryId, sort, currentPage, navigate]);
+  }, [category, sortBy, currentPage, navigate]);
 
   const items = pizzas.map((obj: any) => (
     <PizzaBlock key={obj.title + obj.id} {...obj} />
@@ -94,7 +94,7 @@ const Home: React.FC = () => {
     <div className="container">
       <div className="content__top">
         <Categories
-          activeCategoryId={categoryId}
+          activeCategoryId={category}
           setCategoryId={(i: any) => onClickCategory(i)}
         />
         <Sort />

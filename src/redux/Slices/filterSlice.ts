@@ -2,16 +2,16 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 export interface FilterSliceType {
-  categoryId: number;
-  sort: number;
-  searchValue: string;
+  category: number;
+  sortBy: number;
+  search: string;
   currentPage: number;
 }
 
 export const initialState: FilterSliceType = {
-  categoryId: 0,
-  sort: 0,
-  searchValue: '',
+  category: 0,
+  sortBy: 0,
+  search: '',
   currentPage: 1
 }
 
@@ -20,27 +20,27 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     setCategoryId(state, action: PayloadAction<number>) {
-      state.categoryId = action.payload
+      state.category = action.payload
     }, 
     setSearchValue(state, action: PayloadAction<string>) {
-      state.searchValue = action.payload
+      state.search = action.payload
     }, 
     setSort(state, action: PayloadAction<number>) {
-      state.sort = action.payload
+      state.sortBy = action.payload
     }, 
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
     }, 
     setFilters(state, action: PayloadAction<FilterSliceType>) {
-      state.categoryId = Number(action.payload.categoryId)
+      state.category = Number(action.payload.category)
       state.currentPage = Number(action.payload.currentPage)
-      state.sort = Number(action.payload.sort)
+      state.sortBy = Number(action.payload.sortBy)
     }, 
   }
 });
 
 export const selectFilter = (state: RootState) => state.filter;
-export const selectSort = (state: RootState) => state.filter.sort;
+export const selectSort = (state: RootState) => state.filter.sortBy;
 
 export const { setCategoryId, setSort, setCurrentPage, setFilters, setSearchValue } = filterSlice.actions;
 export default filterSlice.reducer;

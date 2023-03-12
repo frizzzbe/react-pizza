@@ -1,15 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-
-interface FilterSliceState {
+export interface FilterSliceType {
   categoryId: number;
   sort: number;
   searchValue: string;
   currentPage: number;
 }
 
-export const initialState: FilterSliceState = {
+export const initialState: FilterSliceType = {
   categoryId: 0,
   sort: 0,
   searchValue: '',
@@ -32,7 +31,7 @@ const filterSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload
     }, 
-    setFilters(state, action: PayloadAction<FilterSliceState>) {
+    setFilters(state, action: PayloadAction<FilterSliceType>) {
       state.categoryId = Number(action.payload.categoryId)
       state.currentPage = Number(action.payload.currentPage)
       state.sort = Number(action.payload.sort)

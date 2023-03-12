@@ -2,8 +2,9 @@ import React from "react";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId, setCurrentPage, setFilters, initialState, selectFilter } from "../redux/Slices/filterSlice";
-import { getPizzas, selectPizzaData } from "../redux/Slices/pizzaSlice";
+import { useAppDispatch } from "../redux/store";
+import { setCategoryId, setCurrentPage, setFilters, initialState, selectFilter, FilterSliceType } from "../redux/Slices/filterSlice";
+import { getPizzas, SearchPizzaParams, selectPizzaData } from "../redux/Slices/pizzaSlice";
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
@@ -15,7 +16,7 @@ import Pagination from "../components/Pagination";
 const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
   const {items: pizzas, status } = useSelector(selectPizzaData);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -37,19 +38,23 @@ const Home: React.FC = () => {
       sortBy = sortParams[sort].sort,
       order = sortParams[sort].order,
       search = searchValue ? searchValue.trim() : "";
-    //@ts-ignore
-    dispatch(getPizzas({category, sortBy, order, search, currentPage}));
+    
+    dispatch(getPizzas({category, sortBy, order, search, currentPage: String(currentPage)}));
   }
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
     // если есть данные в ссылке, то обновляем redux при первом рендере.
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params = (qs.parse(window.location.search.substring(1))) as unknown as SearchPizzaParams;
       if(Object.values(params).join() === Object.values(initialState).join()){
         fetchPizzas(); // делаем fetch вручную если данные в ссылке совпадают с начальным состояние redux
       }
-      dispatch(setFilters(params));
+      dispatch(setFilters({
+        category: Number(params.category),
+        currentPage: Number(params.currentPage),
+        sortBy: Number(params.sortBy),
+      } as unknown as FilterSliceType));
       isSearch.current = true; // да, пришли параметры из URL 
     }
   }, []);
@@ -67,7 +72,8 @@ const Home: React.FC = () => {
     if (isMounted.current) {
       const queryString = qs.stringify(
         {
-          sortProperty: sort.sortProperty,
+          // временно отключено, так как sort блокируется Type Scriptom
+          // sortProperty: sort.sortProperty,
           categoryId,
           sort,
           currentPage,

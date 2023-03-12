@@ -17,10 +17,17 @@ const Search = () => {
     debounce((str)=>dispatch(setSearchValue(str)), 300),
   []);
 
-  function onChangeInput(e: any) {
+  // типизация для event (React.ChangeEvent) и 
+  // получаем свойство value из <HTMLInputElement>
+  function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
     navigate('/');
     setInputValue(e.target.value);
     searchDebounce(e.target.value);
+  }
+  function onClickClear() {
+    dispatch(setSearchValue(""));
+    setInputValue("");
+    searchRef.current?.focus();
   }
 
   return (
@@ -49,11 +56,7 @@ const Search = () => {
       {inputValue && (
         <svg
           className={styles.clearIcon}
-          onClick={() => {
-            dispatch(setSearchValue(""));
-            setInputValue("");
-            searchRef.current?.focus();
-          }}
+          onClick={()=>onClickClear()}
           viewBox="0 0 32 32"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

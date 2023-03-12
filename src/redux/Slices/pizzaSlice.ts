@@ -1,6 +1,21 @@
+import { RootState } from './../store';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+type PizzaType = {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  count: number;
+  type: number[];
+  size: number[];
+}
+
+interface PizzaSliceState {
+  items: PizzaType[];
+  status: 'loading' | 'success' | 'error';
+}
 // createAsyncThunk заменяет стандартный рекомендуемый подход для обработки жизненных циклов асинхронных запросов.
 // таких как pending, fulfilled, rejected
 export const getPizzas = createAsyncThunk(
@@ -17,7 +32,7 @@ export const getPizzas = createAsyncThunk(
   }
 );
 
-const initialState = {
+const initialState: PizzaSliceState = {
   items: [],
   status: "loading", // loading | success | error
 };
@@ -50,7 +65,7 @@ const pizzaSlice = createSlice({
   },
 });
 
-export const selectPizzaData = (state) => state.pizza;
+export const selectPizzaData = (state: RootState) => state.pizza;
 
 export const { setItems, status } = pizzaSlice.actions;
 export default pizzaSlice.reducer;

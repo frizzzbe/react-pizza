@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addItem, minusItem, removeItem } from "../redux/Slices/cartSlice";
 
 type CartItemProps = {
-  id: number;
+  id: string;
   title: string;
   type: string;
   size: number;

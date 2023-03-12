@@ -1,14 +1,14 @@
 import { RootState } from './../store';
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type CartItem = {
+export type CartItem = {
   id: string;
   title: string;
   price: number;
   imageUrl: string;
   count: number;
-  type: number[];
-  size: number[];
+  type: string;
+  size: number;
 }
 // интерфейс тпизирует только объекты, 
 // используется для описания сложных структур данных
@@ -39,7 +39,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addItem(state, action) {
+    addItem(state, action: PayloadAction<CartItem>) {
       const findItem = state.items.find((obj)=>obj.id === action.payload.id);
       if (findItem) {
         if(action.payload.type && action.payload.size) {
@@ -55,7 +55,7 @@ const cartSlice = createSlice({
       }
       updateData(state);
     },
-    minusItem(state, action) {
+    minusItem(state, action: PayloadAction<string>) {
       const findItem = state.items.find((obj)=>obj.id === action.payload);
       if(findItem){findItem.count--;}
       if(findItem && findItem.count < 1){
@@ -63,7 +63,7 @@ const cartSlice = createSlice({
       }
       updateData(state);
     },
-    removeItem(state, action) {
+    removeItem(state, action: PayloadAction<string>) {
       state.items = state.items.filter((obj)=>obj.id !== action.payload)
       updateData(state);
     }, 

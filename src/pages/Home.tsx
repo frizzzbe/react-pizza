@@ -39,7 +39,13 @@ const Home: React.FC = () => {
       order = sortParams[sortBy].order,
       searchParam = search ? search.trim() : "";
     
-    dispatch(getPizzas({category: categoryParam, sortBy: sortParam, order, search: searchParam, currentPage: String(currentPage)}));
+    dispatch(getPizzas({
+      category: categoryParam, 
+      sortBy: sortParam, 
+      order, 
+      search: searchParam, 
+      currentPage: String(currentPage)
+    }));
   }
 
   React.useEffect(() => {

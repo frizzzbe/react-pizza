@@ -78,8 +78,6 @@ const Home: React.FC = () => {
     if (isMounted.current) {
       const queryString = qs.stringify(
         {
-          // временно отключено, так как sort блокируется Type Scriptom
-          // sortProperty: sort.sortProperty,
           category,
           sortBy,
           currentPage,

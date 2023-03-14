@@ -6,7 +6,7 @@ type SortPropsType = {
   sort: number;
 }
 
-const Sort: React.FC<SortPropsType> = React.memo(({ sort }) => {
+export const Sort: React.FC<SortPropsType> = React.memo(({ sort }) => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null)
 
@@ -65,5 +65,3 @@ const Sort: React.FC<SortPropsType> = React.memo(({ sort }) => {
   );
 }
 );
-
-export default Sort;

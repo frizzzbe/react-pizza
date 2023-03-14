@@ -1,8 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from './Header'
+import { Header } from "../components/reExport";
 
-const MainLayout:React.FC = () => {
+export const MainLayout:React.FC = () => {
   return (
     <div className="wrapper">
       <Header />
@@ -12,5 +12,3 @@ const MainLayout:React.FC = () => {
     </div>
   )
 }
-
-export default MainLayout

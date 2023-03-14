@@ -17,7 +17,7 @@ const categories = [
 
 // React.memo() позволяет не перерисовывать компонент 
 // если его данные (пропсы) не изменились
-const Categories: React.FC<CategoriesProps> = React.memo(({ activeCategoryId, setCategoryId }) => {
+export const Categories: React.FC<CategoriesProps> = React.memo(({ activeCategoryId, setCategoryId }) => {
   return (
     <div className="categories">
       <ul>
@@ -36,5 +36,3 @@ const Categories: React.FC<CategoriesProps> = React.memo(({ activeCategoryId, se
     </div>
   );
 });
-
-export default Categories;

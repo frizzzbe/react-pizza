@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/Slices/filterSlice";
 import { useNavigate } from "react-router-dom";
 
-const Search = () => {
+export const Search: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputValue, setInputValue] = React.useState("");
@@ -76,5 +76,3 @@ const Search = () => {
     </div>
   );
 };
-
-export default Search;

@@ -1,23 +1,7 @@
 import { RootState } from './../store';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getCartFromLS } from '../../utils/cartFromLocalstor';
-
-export type CartItemType = {
-  id: string;
-  title: string;
-  price: number;
-  imageUrl: string;
-  count: number;
-  type: string;
-  size: number;
-}
-// интерфейс тпизирует только объекты, 
-// используется для описания сложных структур данных
-interface CartSliceState {
-  totalPrice: number;
-  totalCount: number;
-  items: CartItemType[];
-}
+import { CartItemType, CartSliceState } from './sliceTypes';
 
 const initialState: CartSliceState = {
   totalPrice: getCartFromLS().totalPrice || 0,

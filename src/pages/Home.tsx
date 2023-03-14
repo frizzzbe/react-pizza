@@ -3,8 +3,9 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../redux/store";
-import { setCategoryId, setCurrentPage, setFilters, initialState, selectFilter, FilterSliceType } from "../redux/Slices/filterSlice";
-import { getPizzas, SearchPizzaParams, selectPizzaData } from "../redux/Slices/pizzaSlice";
+import { setCategoryId, setCurrentPage, setFilters, initialState, selectFilter } from "../redux/Slices/filterSlice";
+import { getPizzas, selectPizzaData } from "../redux/Slices/pizzaSlice";
+import { SearchPizzaParams, FilterSliceType } from '../redux/Slices/sliceTypes';
 
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";

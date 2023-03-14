@@ -21,9 +21,9 @@ const Home: React.FC = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const onClickCategory = (id: number) => {
+  const onClickCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
   const onChangePage = (num: number) => {
     dispatch(setCurrentPage(num));
   }
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
       <div className="content__top">
         <Categories
           activeCategoryId={category}
-          setCategoryId={(i: any) => onClickCategory(i)}
+          setCategoryId={onClickCategory}
         />
         <Sort />
       </div>

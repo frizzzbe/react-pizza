@@ -4,16 +4,18 @@ import { useSelector } from "react-redux";
 
 import Search from "./Search";
 import { selectCart } from '../redux/Slices/cartSlice';
-import React from 'react';
+import React, { useRef } from 'react';
 
 function Header() {
   const cartItems = useSelector(selectCart);
   const location = useLocation();
+  const isMounted = useRef(false);
   // const itemsPizza = useSelector(selectPizzaData);
   React.useEffect(()=>{
-    
-    console.log('selectPizzaData');
-    console.log(cartItems);
+    if (isMounted.current) {
+      localStorage.setItem('cart', JSON.stringify(cartItems))
+    }
+    isMounted.current = true;
   }, [cartItems])
 
   return (

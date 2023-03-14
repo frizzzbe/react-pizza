@@ -81,6 +81,13 @@ body {
       margin: 0;
     }
   }
+
+  .full-pizza-btn {
+    svg path {
+      fill: none;
+      transition-duration: 0s;
+    }
+  }
 }
 
 .cart {

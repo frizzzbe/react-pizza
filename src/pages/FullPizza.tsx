@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const FullPizza: React.FC = () => {
   const [pizza, setPizza] = React.useState<{
@@ -45,6 +45,27 @@ const FullPizza: React.FC = () => {
       <div>
         Rating {pizza.rating / 2} <span>{"⭐".repeat(pizza.rating / 2)}</span>
       </div>
+      <br/>
+      <Link to={'/'}>
+        <button className="full-pizza-btn button button--outline button--add">
+          <svg
+            fill="none"
+            height="24"
+            strokeWidth="1.5"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 6L9 12L15 18"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span>Назад</span>
+        </button>
+      </Link>
     </div>
   );
 };

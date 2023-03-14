@@ -4,10 +4,17 @@ import { useSelector } from "react-redux";
 
 import Search from "./Search";
 import { selectCart } from '../redux/Slices/cartSlice';
+import React from 'react';
 
 function Header() {
-  const { totalPrice, totalCount } = useSelector(selectCart);
+  const cartItems = useSelector(selectCart);
   const location = useLocation();
+  // const itemsPizza = useSelector(selectPizzaData);
+  React.useEffect(()=>{
+    
+    console.log('selectPizzaData');
+    console.log(cartItems);
+  }, [cartItems])
 
   return (
     <div className="header">
@@ -22,7 +29,7 @@ function Header() {
         {location.pathname !== "/cart" && (<Search />)}
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
-            <span>{totalPrice} ₽</span>
+            <span>{cartItems.totalPrice} ₽</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -53,7 +60,7 @@ function Header() {
                 strokeLinejoin="round"
               ></path>
             </svg>
-            <span>{totalCount}</span>
+            <span>{cartItems.totalCount}</span>
           </Link>
         </div>
       </div>

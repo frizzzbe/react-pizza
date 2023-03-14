@@ -1,10 +1,10 @@
 import React from "react";
-import useWhyDidYouUpdate from 'ahooks/lib/useWhyDidYouUpdate';
+// import useWhyDidYouUpdate from "ahooks/lib/useWhyDidYouUpdate";
 
 type CategoriesProps = {
   activeCategoryId: number;
   setCategoryId: (idx: number) => void;
-}
+};
 
 const categories = [
   "Все",
@@ -15,8 +15,9 @@ const categories = [
   "Закрытые",
 ];
 
-const Categories: React.FC<CategoriesProps> = ({ activeCategoryId, setCategoryId }) => {
-  useWhyDidYouUpdate('categories', [activeCategoryId, setCategoryId]);
+// React.memo() позволяет не перерисовывать компонент 
+// если его данные (пропсы) не изменились
+const Categories: React.FC<CategoriesProps> = React.memo(({ activeCategoryId, setCategoryId }) => {
   return (
     <div className="categories">
       <ul>
@@ -34,6 +35,6 @@ const Categories: React.FC<CategoriesProps> = ({ activeCategoryId, setCategoryId
       </ul>
     </div>
   );
-}
+});
 
 export default Categories;

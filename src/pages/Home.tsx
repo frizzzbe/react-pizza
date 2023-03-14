@@ -101,7 +101,7 @@ const Home: React.FC = () => {
           activeCategoryId={category}
           setCategoryId={onClickCategory}
         />
-        <Sort />
+        <Sort sort={sortBy} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === "error" ? (

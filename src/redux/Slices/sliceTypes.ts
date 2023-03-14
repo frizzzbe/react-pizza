@@ -20,6 +20,8 @@ export type PizzaType = {
   type: number[];
   size: number[];
 }
+// интерфейс тпизирует только объекты, 
+// используется для описания сложных структур данных
 export interface PizzaSliceState {
   items: PizzaType[];
   status: Status;
@@ -35,8 +37,6 @@ export type CartItemType = {
   type: string;
   size: number;
 }
-// интерфейс тпизирует только объекты, 
-// используется для описания сложных структур данных
 export interface CartSliceState {
   totalPrice: number;
   totalCount: number;

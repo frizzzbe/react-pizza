@@ -161,5 +161,340 @@
    "price": 285,
    "category": 5,
    "rating": 7
+  },
+  {
+   "id": "10",
+   "imageUrl": "pizza-10.webp",
+   "title": "Деревенская с бужениной",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 469,
+   "category": 1,
+   "rating": 6
+  },
+  {
+   "id": "11",
+   "imageUrl": "pizza-11.webp",
+   "title": "Ветчина и сыр",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 369,
+   "category": 1,
+   "rating": 6
+  },
+  {
+   "id": "12",
+   "imageUrl": "pizza-12.webp",
+   "title": "Двойной цыпленок",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 369,
+   "category": 1,
+   "rating": 6
+  },
+  {
+   "id": "13",
+   "imageUrl": "pizza-13.webp",
+   "title": "Чоризо фреш",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 289,
+   "category": 3,
+   "rating": 6
+  },
+  {
+   "id": "14",
+   "imageUrl": "pizza-14.webp",
+   "title": "Додо микс",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 469,
+   "category": 3,
+   "rating": 6
+  },
+  {
+   "id": "15",
+   "imageUrl": "pizza-15.webp",
+   "title": "Карбонара",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 399,
+   "category": 4,
+   "rating": 6
+  },
+  {
+   "id": "16",
+   "imageUrl": "pizza-16.webp",
+   "title": "Мясная",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 400,
+   "category": 1,
+   "rating": 6
+  },
+  {
+   "id": "17",
+   "imageUrl": "pizza-17.webp",
+   "title": "Песто",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 430,
+   "category": 3,
+   "rating": 10
+  },
+  {
+   "id": "18",
+   "imageUrl": "pizza-18.webp",
+   "title": "Цыпленок карри",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 419,
+   "category": 3,
+   "rating": 10
+  },
+  {
+   "id": "19",
+   "imageUrl": "pizza-19.webp",
+   "title": "Аррива",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 419,
+   "category": 1,
+   "rating": 10
+  },
+  {
+   "id": "20",
+   "imageUrl": "pizza-20.webp",
+   "title": "Четыре сыра 🌱",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 469,
+   "category": 2,
+   "rating": 10
+  },
+  {
+   "id": "21",
+   "imageUrl": "pizza-21.webp",
+   "title": "Цыпленок ранч",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 519,
+   "category": 2,
+   "rating": 10
+  },
+  {
+   "id": "22",
+   "imageUrl": "pizza-22.webp",
+   "title": "Диабло 🌶️🌶️",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 459,
+   "category": 4,
+   "rating": 8
+  },
+  {
+   "id": "23",
+   "imageUrl": "pizza-23.webp",
+   "title": "Домашняя",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 429,
+   "category": 4,
+   "rating": 8
+  },
+  {
+   "id": "24",
+   "imageUrl": "pizza-24.webp",
+   "title": "Гавайская",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30
+   ],
+   "price": 414,
+   "category": 5,
+   "rating": 8
+  },
+  {
+   "id": "25",
+   "imageUrl": "pizza-25.webp",
+   "title": "Колбаски барбекю",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    30,
+    40
+   ],
+   "price": 415,
+   "category": 5,
+   "rating": 8
+  },
+  {
+   "id": "26",
+   "imageUrl": "pizza-26.webp",
+   "title": "Овощи и грибы 🌱",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    40
+   ],
+   "price": 415,
+   "category": 2,
+   "rating": 8
+  },
+  {
+   "id": "27",
+   "imageUrl": "pizza-27.webp",
+   "title": "Овощи и грибы 🌱",
+   "types": [
+    1
+   ],
+   "sizes": [
+    26,
+    40
+   ],
+   "price": 469,
+   "category": 2,
+   "rating": 8
+  },
+  {
+   "id": "28",
+   "imageUrl": "pizza-28.webp",
+   "title": "Дуда",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 500,
+   "category": 1,
+   "rating": 10
+  },
+  {
+   "id": "29",
+   "imageUrl": "pizza-29.webp",
+   "title": "Мясной Микс",
+   "types": [
+    0,
+    1
+   ],
+   "sizes": [
+    26,
+    30,
+    40
+   ],
+   "price": 383,
+   "category": 1,
+   "rating": 10
   }
  ]

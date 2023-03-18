@@ -20,7 +20,6 @@ const Home: React.FC = () => {
 
   const onClickCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-    // axios.get(`https://63fe042bcd13ced3d7c47f84.mockapi.io/items`).then(({data}) => console.log(data.length));
   }, []);
   const onChangePage = (num: number) => {
     dispatch(setCurrentPage(num));
@@ -119,7 +118,9 @@ const Home: React.FC = () => {
         </div>
       )}
 
-      <Pagination page={currentPage} setCurrentPage={onChangePage} />
+      {
+        !category && <Pagination page={currentPage} setCurrentPage={onChangePage} />
+      }
     </div>
   );
 };

@@ -48,7 +48,7 @@ export const Pagination: React.FC<PropsCurrentPage> = ({ page, setCurrentPage })
     }
     onPageChange={(e) => setCurrentPage(e.selected + 1)}
     pageRangeDisplayed={5}
-    pageCount={3}
+    pageCount={4}
     forcePage={page - 1}
   />
 );

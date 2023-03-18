@@ -12,7 +12,9 @@ export const getPizzas = createAsyncThunk<PizzaType[], SearchPizzaParams>(
     const { category, sortBy, order, search, currentPage } = params;
     const { data } = await axios.get<PizzaType[]>(
       search
-        ? `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?order=${order}&search=${search}`
+        ? `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?order=${order}&search=${search}` :
+      category !== ""
+        ? `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`
         : `https://63fe042bcd13ced3d7c47f84.mockapi.io/items?page=${currentPage}&limit=8${category}&sortBy=${sortBy}&order=${order}`
     );
     if(data.length === 0){ throw new Error("Zero elems") }

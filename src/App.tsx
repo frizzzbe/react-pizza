@@ -12,19 +12,19 @@ const FullPizza = React.lazy(()=>import("./pages/FullPizza"));
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<MainLayout/>}>
+      <Route path={`${process.env.PUBLIC_URL}/`} element={<MainLayout/>}>
         <Route path="" element={<Home />} />
-        <Route path="cart" element={
+        <Route path={`${process.env.PUBLIC_URL}/cart`} element={
           <Suspense fallback={<p>Loading...</p>}>
             <Cart />
           </Suspense>
         } />
-        <Route path="pizza/:id" element={
+        <Route path={`${process.env.PUBLIC_URL}/pizza/:id`} element={
           <Suspense fallback={<p>Loading...</p>}>
             <FullPizza />
           </Suspense>
         } />
-        <Route path="*" element={<NotFound />} />
+        <Route path={`${process.env.PUBLIC_URL}/*`} element={<NotFound />} />
       </Route>
     </Routes>
   );

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 // import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
+console.log(process.env.PUBLIC_URL);
 root.render(
   <Provider store={store}>
     <BrowserRouter>

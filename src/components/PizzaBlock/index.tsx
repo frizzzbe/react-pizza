@@ -27,7 +27,7 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageU
       id,
       title,
       price,
-      imageUrl: '/pizzasImg/' + imageUrl,
+      imageUrl: imageUrl,
       type: typeNames[activeType],
       size: sizes[activeSize],
       count: 0,
@@ -37,8 +37,8 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageU
 
   return (
     <div className="pizza-block">
-      <Link to={`/pizza/` + id}>
-        <img className="pizza-block__image" src={'/pizzasImg/' + imageUrl} alt={title} />
+      <Link to={`${process.env.PUBLIC_URL}/pizza/`+ id}>
+        <img className="pizza-block__image" src={imageUrl} alt={title} />
         <h4 className="pizza-block__title">{title}</h4>
       </Link>
       <div className="pizza-block__selector">

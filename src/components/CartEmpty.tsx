@@ -12,8 +12,8 @@ export const CartEmpty: React.FC = () => {
         <br />
         Для того, чтобы заказать пиццу, перейди на главную страницу.
       </p>
-      <img src="/empty-cart.png" alt="Empty cart" />
-      <Link to="/" className="button button--black">
+      <img src={`${process.env.PUBLIC_URL}/empty-cart.png`} alt="Empty cart" />
+      <Link to={`${process.env.PUBLIC_URL}/`} className="button button--black">
         <span>Вернуться назад</span>
       </Link>
     </div>

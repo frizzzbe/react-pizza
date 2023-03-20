@@ -44,7 +44,11 @@ const pizzaSlice = createSlice({
       })
       .addCase(getPizzas.fulfilled, (state, action) => {
         console.log(Status.SUCCESS);
-        state.items = action.payload;
+        const filledPizza = action.payload;
+        filledPizza.forEach(e => {
+          e.imageUrl = `${process.env.PUBLIC_URL}/pizzasImg/` + e.imageUrl;
+        })
+        state.items = filledPizza;
         state.status = Status.SUCCESS;
       })
       .addCase(getPizzas.rejected, (state) => {

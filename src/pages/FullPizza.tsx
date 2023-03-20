@@ -36,7 +36,7 @@ const FullPizza: React.FC = () => {
       <img
         width="300"
         height="300"
-        src={"/pizzasImg/" + pizza.imageUrl}
+        src={pizza.imageUrl}
         alt=""
       />
       <h2>{pizza.title}</h2>
@@ -46,7 +46,7 @@ const FullPizza: React.FC = () => {
         Rating {pizza.rating / 2} <span>{"⭐".repeat(pizza.rating / 2)}</span>
       </div>
       <br/>
-      <Link to={'/'}>
+      <Link to={`${process.env.PUBLIC_URL}/`}>
         <button className="full-pizza-btn button button--outline button--add">
           <svg
             fill="none"

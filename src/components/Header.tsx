@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
   return (
     <div className="header">
       <div className="container">
-        <Link to="/" className="header__logo">
+        <Link to={`${process.env.PUBLIC_URL}/`} className="header__logo">
           <img width="38" src={logoSvg} alt="Pizza logo" />
           <div>
             <h1>React Pizza</h1>
@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
         </Link>
         {location.pathname !== "/cart" && (<Search />)}
         <div className="header__cart">
-          <Link to="/cart" className="button button--cart">
+          <Link to={`${process.env.PUBLIC_URL}/cart`} className="button button--cart">
             <span>{cartItems.totalPrice} ₽</span>
             <div className="button__delimiter"></div>
             <svg

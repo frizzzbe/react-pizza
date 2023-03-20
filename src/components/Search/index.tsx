@@ -20,7 +20,7 @@ export const Search: React.FC = () => {
   // типизация для event (React.ChangeEvent) и 
   // получаем свойство value из <HTMLInputElement>
   function onChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
-    navigate('/');
+    navigate(`${process.env.PUBLIC_URL}/`);
     setInputValue(e.target.value);
     searchDebounce(e.target.value);
   }

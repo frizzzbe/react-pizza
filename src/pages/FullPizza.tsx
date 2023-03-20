@@ -36,7 +36,7 @@ const FullPizza: React.FC = () => {
       <img
         width="300"
         height="300"
-        src={pizza.imageUrl}
+        src={`${process.env.PUBLIC_URL}/pizzasImg/` + pizza.imageUrl}
         alt=""
       />
       <h2>{pizza.title}</h2>

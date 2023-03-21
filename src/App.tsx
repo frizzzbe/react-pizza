@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-// import FullPizza from "./pages/FullPizza";
 import NotFound from "./pages/NotFound";
 import { MainLayout } from "./components/MainLayout";
 const Cart = React.lazy(()=>import("./pages/Cart"));

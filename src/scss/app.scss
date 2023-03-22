@@ -79,6 +79,12 @@ body {
       margin: 0;
     }
   }
+  
+  @media screen and (max-width: 768px) {
+    &--cart {
+      margin: 0 auto 90px;
+    }
+  }
 
   .full-pizza-btn {
     svg path {
@@ -348,6 +354,90 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+    }
+  }
+}
+
+
+  
+@media screen and (max-width: 768px) {
+  .cart__item {
+    &-img {
+      margin-right: 25px;
+      width: 10%;
+    }
+
+    &-info {
+      width: 40%;
+      flex-grow: 1;
+    }
+
+    &-count {
+      width: 15%;
+    }
+
+    &-price {
+      width: 19%;
+    }
+
+    &-remove {
+      width: 4%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cart__item {
+    &-img {
+      margin-right: 25px;
+      width: 15%;
+    }
+    &-info {
+      width: 40%;
+    }
+    &-count {
+      width: 20%;
+    }
+
+    &-price,
+    &-remove {
+      display: none
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .cart__clear {
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+    span {
+      display: none;
+    }
+  }
+
+  .cart__item {
+    &-img {
+      flex-grow: 1;
+    }
+    &-count {
+      width: 28%;
+    }
+    &-info {
+      margin-right: 4px;
+    }
+  }
+
+  .cart__bottom-details{
+    flex-wrap: wrap;
+  }
+
+  .cart__bottom-buttons .go-back-btn {
+    width: auto;
+    margin-right: 15px;
+    span {
+      display: none;
     }
   }
 }

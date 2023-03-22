@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const CartEmpty: React.FC = () => {
   return (
-    <div className="cart cart--empty">
+    <div className="container cart cart--empty">
       <h2>
         Корзина пустая <span>😕</span>
       </h2>

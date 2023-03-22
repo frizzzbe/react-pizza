@@ -27,5 +27,11 @@
         color: #fff;
       }
     }
+    
+    @media screen and (max-width: 768px) {
+      li {
+        padding: 7px 20px;
+      }
+    }
   }
 }

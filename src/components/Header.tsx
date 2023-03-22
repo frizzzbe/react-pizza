@@ -24,8 +24,8 @@ export const Header: React.FC = () => {
         <Link to={`${process.env.PUBLIC_URL}/`} className="header__logo">
           <img width="38" src={logoSvg} alt="Pizza logo" />
           <div>
-            <h1>React Pizza</h1>
-            <p>самая вкусная пицца во вселенной</p>
+            <h1 className="header__title">React Pizza</h1>
+            <p className="header__slogan">самая вкусная пицца во вселенной</p>
           </div>
         </Link>
         {location.pathname !== "/cart" && (<Search />)}

@@ -119,7 +119,7 @@ const Home: React.FC = () => {
       )}
 
       {
-        !category && <Pagination page={currentPage} setCurrentPage={onChangePage} />
+        (!category && !search) && <Pagination page={currentPage} setCurrentPage={onChangePage} />
       }
     </div>
   );

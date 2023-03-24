@@ -2,6 +2,8 @@
 
 Это обновлённый курс на 2022 год, по ReactJS. В данном курсе подробно раскрывается тема создания фронтенд части интернет-магазина пиццерии на всех нижеперечисленных технологиях.
 
+Большое спасибо автору [Archakov](https://www.youtube.com/@ArchakovBlog)
+
 # 🛠 Технологии:
 
 - **ReactJS 18**
@@ -31,11 +33,6 @@
 
 
 # Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
 In the project directory, you can run:
 
 ### `npm start`
@@ -50,5 +47,3 @@ Builds the app for production to the `build` folder.
 ### `npm run eject`
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Большое спасибо автору [Archakov](https://www.youtube.com/@ArchakovBlog)

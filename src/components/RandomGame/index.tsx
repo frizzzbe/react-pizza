@@ -15,10 +15,10 @@ const RandomGame: React.FC = () => {
   function checkResult(check: number) {
     if (randomAnswer === check) {
       setIsRight(true)
-      console.log("успех!!!!!: ", `Правильный ответ: ${randomAnswer} \n Ваш ответ: ${check}`)
+      console.log("успех!!!!!: ", `\n Правильный ответ: ${randomAnswer + 1} \n Ваш ответ: ${check + 1}`)
     } else {
       setIsRight(false)
-      console.log("Провал: ", `Правильный ответ: ${randomAnswer} \n Ваш ответ: ${check}`)
+      console.log("Провал: ", `\n Правильный ответ: ${randomAnswer + 1} \n Ваш ответ: ${check + 1}`)
     }
   }
 

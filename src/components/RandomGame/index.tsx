@@ -1,8 +1,8 @@
 import React from 'react'
 
-function RandomGame() {
-  const [randomCount, setRandomCount] = React.useState(4); // количество кнопок и возможных чисел
-  const [randomAnswer, setRandomAnswer] = React.useState(0); // правильный ответ
+const RandomGame: React.FC = () => {
+  const [randomCount, setRandomCount] = React.useState<number>(4); // количество кнопок и возможных чисел
+  const [randomAnswer, setRandomAnswer] = React.useState<number>(0); // правильный ответ
   const [answer, setAnswer] = React.useState<number>(-1);  // ответ пользователя
   const [isRight, setIsRight] = React.useState<boolean>(false); // Результат
 

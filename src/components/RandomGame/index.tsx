@@ -38,7 +38,7 @@ function RandomGame() {
 
   return (
     <div>
-      <h1>RandomGame</h1>
+      <h2 style={{marginTop: '20px'}}>RandomGame</h2>
       <button onClick={restartGame}>Again</button>
       <span style={{
         color: isRight ? 'green' : 'red', 

@@ -7,6 +7,7 @@ function RandomGame() {
   const [isRight, setIsRight] = React.useState<boolean>(false); // Результат
 
   function restartGame() {
+    setRandomCount(Math.floor(Math.random() * 6) + 4)
     setRandomAnswer(Math.floor(Math.random() * randomCount))
     setIsRight(false)
   }
@@ -34,6 +35,7 @@ function RandomGame() {
   // }, [answer])
 
   React.useEffect(()=>{
+    setRandomCount(Math.floor(Math.random() * 6) + 4)
     restartGame();
   }, [])
 

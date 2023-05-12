@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 function RandomGame() {
   const [randomCount, setRandomCount] = React.useState(4); // количество кнопок и возможных чисел

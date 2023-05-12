@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import RandomGame from "../components/RandomGame";
 
 const FullPizza: React.FC = () => {
   const [pizza, setPizza] = React.useState<{
@@ -66,6 +67,8 @@ const FullPizza: React.FC = () => {
           <span>Назад</span>
         </button>
       </Link>
+      {/* Random game */}
+      <RandomGame/>
     </div>
   );
 };

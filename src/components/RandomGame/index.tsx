@@ -3,27 +3,35 @@ import React, { useEffect } from 'react'
 function RandomGame() {
   const [randomCount, setRandomCount] = React.useState(4); // количество кнопок и возможных чисел
   const [randomAnswer, setRandomAnswer] = React.useState(0); // правильный ответ
-  const [answer, setAnswer] = React.useState<number>();  // ответ пользователя
+  const [answer, setAnswer] = React.useState<number>(-1);  // ответ пользователя
+  const [isRight, setIsRight] = React.useState<boolean>(false); // Результат
 
   function restartGame() {
     setRandomAnswer(Math.floor(Math.random() * randomCount))
+    setIsRight(false)
   }
 
-  function checkResult() {
-    if (randomAnswer === answer) {
-      console.log("успех!!!!!: ", `Правильный ответ: ${randomAnswer} \n Ваш ответ: ${answer}`)
+  function checkResult(check: number) {
+    if (randomAnswer === check) {
+      setIsRight(true)
+      console.log("успех!!!!!: ", `Правильный ответ: ${randomAnswer} \n Ваш ответ: ${check}`)
     } else {
-      console.log("Провал: ", `Правильный ответ: ${randomAnswer} \n Ваш ответ: ${answer}`)
+      setIsRight(false)
+      console.log("Провал: ", `Правильный ответ: ${randomAnswer} \n Ваш ответ: ${check}`)
     }
   }
 
   React.useEffect(()=>{
-    console.log("randomAnswer:", randomAnswer)
-  }, [randomAnswer])
+    let obj = {
+      "randomAnswer:": randomAnswer,
+      "answer:": answer
+    }
+    console.log(obj)
+  }, [randomAnswer, answer])
 
-  React.useEffect(()=>{
-    checkResult();
-  }, [answer])
+  // React.useEffect(()=>{
+  //   checkResult();
+  // }, [answer])
 
   React.useEffect(()=>{
     restartGame();
@@ -33,12 +41,19 @@ function RandomGame() {
   return (
     <div>
       <h1>RandomGame</h1>
-      <button onClick={restartGame}>Again</button><br/>
+      <button onClick={restartGame}>Again</button>
+      <span style={{
+        color: isRight ? 'green' : 'red', 
+        marginLeft: '15px'
+      }}>●</span>
+      <br/>
       {
         Array(randomCount).fill(null).map((el, i) => (
-        <button 
+        <button key={el + i}
         onClick={()=>{
           setAnswer(i);
+          checkResult(i)
+          // () => {}
         }}
         >{i+1}</button>))
       }

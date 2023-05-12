@@ -43,7 +43,7 @@ const FullPizza: React.FC = () => {
       <p>Lorem ipsum dolor sit {pizza.title}</p>
       <h4>{pizza.price} р.</h4>
       <div>
-        Rating {pizza.rating / 2} <span>{"⭐".repeat(pizza.rating / 2)}</span>
+        Rating {pizza.rating / 2} <span style={{cursor: 'default'}}>{"⭐".repeat(pizza.rating / 2)}</span>
       </div>
       <br/>
       <Link to={`${process.env.PUBLIC_URL}/`}>

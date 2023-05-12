@@ -30,10 +30,6 @@ function RandomGame() {
     console.log(obj)
   }, [randomAnswer, answer])
 
-  // React.useEffect(()=>{
-  //   checkResult();
-  // }, [answer])
-
   React.useEffect(()=>{
     setRandomCount(Math.floor(Math.random() * 6) + 4)
     restartGame();
@@ -55,7 +51,6 @@ function RandomGame() {
         onClick={()=>{
           setAnswer(i);
           checkResult(i)
-          // () => {}
         }}
         >{i+1}</button>))
       }
